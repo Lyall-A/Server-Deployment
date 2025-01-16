@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  matrix:
+    image: matrixdotorg/synapse:latest
+    container_name: matrix
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - 8008:8008/tcp
+    volumes:
+      - ../volumes/matrix/data:/data

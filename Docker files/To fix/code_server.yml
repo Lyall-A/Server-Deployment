@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  code_server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code_server
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - 6050:8443
+    volumes:
+      - ../volumes/code_server/config:/config

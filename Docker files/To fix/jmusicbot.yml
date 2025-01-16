@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  jmusicbot:
+    build: /home/lyall/Files/Music Bot
+    container_name: jmusicbot
+    restart: unless-stopped
+    network_mode: bridge
+    volumes:
+      - /home/lyall/Files/Music Bot:/app
+      - /media/hdd/media/Music:/media

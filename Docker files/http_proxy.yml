@@ -1,0 +1,10 @@
+services:
+  http_proxy:
+    image: node:latest
+    container_name: http_proxy
+    restart: unless-stopped
+    network_mode: host
+    working_dir: /data
+    command: node .
+    volumes:
+      ../Docker volumes/http_proxy:/data

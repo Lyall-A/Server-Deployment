@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  place:
+    image: oven/bun:latest
+    container_name: place
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - 4822:4822
+    working_dir: /app
+    command: bun .
+    volumes:
+      - /home/lyall/Servers/Place:/app

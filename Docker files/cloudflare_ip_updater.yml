@@ -1,0 +1,10 @@
+services:
+  cloudflare_ip_updater:
+    image: oven/bun:latest
+    container_name: cloudflare_ip_updater
+    restart: unless-stopped
+    network_mode: bridge
+    working_dir: /data
+    command: bun .
+    volumes:
+      - ../Docker volumes/cloudflare_ip_updater:/data

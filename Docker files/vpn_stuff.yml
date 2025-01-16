@@ -1,0 +1,71 @@
+services:
+  # OpenVPN Client
+  vpn:
+    image: dperson/openvpn-client
+    container_name: vpn
+    restart: unless-stopped
+    network_mode: bridge
+    cap_add:
+      - net_admin
+    ports:
+      - 8090:8090 # qBittorrent
+      - 8112:8112 # Deluge
+      - 6881:6881/udp # Deluge inbound torrent traffic
+      - 6881:6881/tcp # Deluge inbound torrent traffic
+      - 6887:6887/udp # qBittorrent inbound torrent traffic
+      - 6887:6887/tcp # qBittorrent inbound torrent traffic
+      - 8989:8989 # Sonarr
+      - 7878:7878 # Radarr
+      - 8686:8686 # Lidarr
+      - 9117:9117 # Jackett
+    volumes:
+      - ../Docker volumes/vpn/vpn:/vpn
+    command: '-f ""'
+  # Deluge
+  deluge:
+    image: linuxserver/deluge
+    container_name: deluge
+    restart: unless-stopped
+    network_mode: service:vpn
+    volumes:
+      - ../Docker volumes/deluge/config:/config
+      - /mnt/drive1/Media:/media/Torrents:/downloads
+      - /mnt/drive1/Media:/media:/media
+  # Sonarr (Shows)
+  sonarr:
+    image: ghcr.io/hotio/sonarr
+    container_name: sonarr
+    restart: unless-stopped
+    network_mode: service:vpn
+    volumes:
+      - ../Docker volumes/sonarr/config:/config
+      - /mnt/drive1/Media:/media:/media
+      - /mnt/drive1/Media:/media/Torrents:/downloads
+  # Radarr (Movies)
+  radarr:
+    image: ghcr.io/hotio/radarr
+    container_name: radarr
+    restart: unless-stopped
+    network_mode: service:vpn
+    volumes:
+      - ../Docker volumes/radarr/config:/config
+      - /mnt/drive1/Media:/media:/media
+      - /mnt/drive1/Media:/media/Torrents:/downloads
+  # Lidarr (Music)
+  lidarr:
+    image: ghcr.io/hotio/lidarr
+    container_name: lidarr
+    restart: unless-stopped
+    network_mode: service:vpn
+    volumes:
+      - ../Docker volumes/lidarr/config:/config
+      - /mnt/drive1/Media:/media:/media
+      - /mnt/drive1/Media:/media/Torrents:/downloads
+  # Jackett (Indexer)
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    restart: unless-stopped
+    network_mode: service:vpn
+    volumes:
+      - ../Docker volumes/jackett/config:/config

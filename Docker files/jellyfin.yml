@@ -1,0 +1,13 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    network_mode: host
+    # network_mode: bridge
+    # ports:
+    #   - 8096:8096
+    volumes:
+      - ../Docker volumes/jellyfin/config:/config
+      - ../Docker volumes/jellyfin/cache:/cache
+      - /mnt/drive1/Media:/media

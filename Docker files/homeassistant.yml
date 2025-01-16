@@ -1,0 +1,14 @@
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant
+    container_name: homeassistant
+    restart: unless-stopped
+    network_mode: host
+    # network_mode: bridge
+    # ports:
+    #   - 1900:1900
+    #   - 5353:5353
+    #   - 51827:51827
+    #   - 8123:8123
+    volumes:
+      - ../Docker volumes/homeassistant/config:/config
