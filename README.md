@@ -44,7 +44,7 @@ Assuming x64 with UEFI, a lot of this is based of [Arch installation guide](http
 
 ## Setup
 * Set hostname: `echo "server1" > /etc/hostname`
-* Add user: `useradd -m lyall`
+* Add user: `useradd -m -s /bin/bash lyall`
 * Set user password: `passwd lyall`
 * Install [packages](#packages)
 * Give user sudo permissions: `usermod -aG sudo lyall`
