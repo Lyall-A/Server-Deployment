@@ -27,7 +27,7 @@ Assuming x64 with UEFI, a lot of this is based of [Arch installation guide](http
 * Install Debian with debootstrap: `sudo debootstrap stable /mnt http://deb.debian.org/debian/`
 * Mount EFI partition: `sudo mount /dev/sdb1 /mnt/boot`
 * Mount `/dev`, `/proc` and `/sys`: `sudo mount --bind /dev /mnt/dev && sudo mount --bind /proc /mnt/proc && sudo mount --bind /sys /mnt/sys`
-* Get UUID's for partitions and keep note: `sudo blkid /dev/sdb1 && sudo blkid /dev/sdb2 && sudo blkid /dev/sdb3`
+* Get UUID's for partitions and keep note: `sudo blkid`
 * Enter chroot environment: `sudo chroot /mnt`
 * Might need to do this to add `/sbin` to PATH: `export PATH=$PATH:/sbin`
 * Add EFI partition to fstab file: `echo "UUID=C4E0-226F /boot vfat defaults 0 1" > /etc/fstab`
@@ -45,12 +45,15 @@ Assuming x64 with UEFI, a lot of this is based of [Arch installation guide](http
 
 ## Setup
 * Set hostname: `echo "server1" > /etc/hostname`
+* Set root password: `passwd`
 * Add user: `useradd -m -s /bin/bash lyall`
 * Set user password: `passwd lyall`
 * Give user sudo permissions: `usermod -aG sudo lyall`
 * Configure `sources.list` if needed
 * Install [packages](#packages)
 * Configure packages (samba, network-manager, etc)
+* Create samba user: `smbpasswd -a lyall`
+* To be safe, you can configure network at `/etc/network/interfaces`: `auto eno1`, `iface eno1 inet dhcp`
 * Make sure all services for packages are enabled
 * Exit chroot environment: `exit`
 * Unmount everything: `sudo umount /mnt/dev; sudo umount /mnt/proc; sudo umount /mnt/sys; sudo umount /mnt/boot; sudo umount /mnt`
@@ -61,7 +64,7 @@ Assuming x64 with UEFI, a lot of this is based of [Arch installation guide](http
 
 ## Extras
 * Mount drives at `/mnt/drive<number>`
-* Place `Docker files` in home directory
+* Place `Docker files` and `Docker volumes` in home directory
 
 ## Packages
 * ssh

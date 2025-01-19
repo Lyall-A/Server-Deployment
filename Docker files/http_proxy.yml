@@ -7,4 +7,4 @@ services:
     working_dir: /data
     command: node .
     volumes:
-      ../Docker volumes/http_proxy:/data
+      - ../Docker volumes/http_proxy:/data

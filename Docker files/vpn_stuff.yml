@@ -8,12 +8,9 @@ services:
     cap_add:
       - net_admin
     ports:
-      - 8090:8090 # qBittorrent
       - 8112:8112 # Deluge
       - 6881:6881/udp # Deluge inbound torrent traffic
       - 6881:6881/tcp # Deluge inbound torrent traffic
-      - 6887:6887/udp # qBittorrent inbound torrent traffic
-      - 6887:6887/tcp # qBittorrent inbound torrent traffic
       - 8989:8989 # Sonarr
       - 7878:7878 # Radarr
       - 8686:8686 # Lidarr
@@ -29,7 +26,7 @@ services:
     network_mode: service:vpn
     volumes:
       - ../Docker volumes/deluge/config:/config
-      - /mnt/drive1/Media:/media/Torrents:/downloads
+      - /mnt/drive1/Media/Torrents:/downloads
       - /mnt/drive1/Media:/media:/media
   # Sonarr (Shows)
   sonarr:
@@ -40,7 +37,7 @@ services:
     volumes:
       - ../Docker volumes/sonarr/config:/config
       - /mnt/drive1/Media:/media:/media
-      - /mnt/drive1/Media:/media/Torrents:/downloads
+      - /mnt/drive1/Media/Torrents:/downloads
   # Radarr (Movies)
   radarr:
     image: ghcr.io/hotio/radarr
@@ -50,7 +47,7 @@ services:
     volumes:
       - ../Docker volumes/radarr/config:/config
       - /mnt/drive1/Media:/media:/media
-      - /mnt/drive1/Media:/media/Torrents:/downloads
+      - /mnt/drive1/Media/Torrents:/downloads
   # Lidarr (Music)
   lidarr:
     image: ghcr.io/hotio/lidarr
@@ -60,7 +57,7 @@ services:
     volumes:
       - ../Docker volumes/lidarr/config:/config
       - /mnt/drive1/Media:/media:/media
-      - /mnt/drive1/Media:/media/Torrents:/downloads
+      - /mnt/drive1/Media/Torrents:/downloads
   # Jackett (Indexer)
   jackett:
     image: lscr.io/linuxserver/jackett:latest
