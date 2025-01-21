@@ -26,8 +26,8 @@ services:
     network_mode: service:vpn
     volumes:
       - ../Docker volumes/deluge/config:/config
+      - /mnt/drive1/Media:/media
       - /mnt/drive1/Media/Torrents:/downloads
-      - /mnt/drive1/Media:/media:/media
   # Sonarr (Shows)
   sonarr:
     image: ghcr.io/hotio/sonarr
@@ -36,7 +36,7 @@ services:
     network_mode: service:vpn
     volumes:
       - ../Docker volumes/sonarr/config:/config
-      - /mnt/drive1/Media:/media:/media
+      - /mnt/drive1/Media:/media
       - /mnt/drive1/Media/Torrents:/downloads
   # Radarr (Movies)
   radarr:
@@ -46,7 +46,7 @@ services:
     network_mode: service:vpn
     volumes:
       - ../Docker volumes/radarr/config:/config
-      - /mnt/drive1/Media:/media:/media
+      - /mnt/drive1/Media:/media
       - /mnt/drive1/Media/Torrents:/downloads
   # Lidarr (Music)
   lidarr:
@@ -56,7 +56,7 @@ services:
     network_mode: service:vpn
     volumes:
       - ../Docker volumes/lidarr/config:/config
-      - /mnt/drive1/Media:/media:/media
+      - /mnt/drive1/Media:/media
       - /mnt/drive1/Media/Torrents:/downloads
   # Jackett (Indexer)
   jackett:

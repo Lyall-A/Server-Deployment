@@ -9,6 +9,6 @@ services:
     volumes:
       - ../Docker volumes/youtubedl_material/config:/app/appdata
       - ../Docker volumes/youtubedl_material/users:/app/users
-      - /mnt/drive1/Media:/media/YouTube/Videos:/app/video
-      - /mnt/drive1/Media:/media/YouTube/Audio:/app/audio
-      - /mnt/drive1/Media:/media/YouTube/Channels:/app/subscriptions/channels
+      - /mnt/drive1/Media/YouTube/Videos:/app/video
+      - /mnt/drive1/Media/YouTube/Audio:/app/audio
+      - /mnt/drive1/Media/YouTube/Channels:/app/subscriptions/channels
