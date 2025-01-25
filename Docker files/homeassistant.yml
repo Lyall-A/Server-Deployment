@@ -12,3 +12,4 @@ services:
     #   - 8123:8123
     volumes:
       - ../Docker volumes/homeassistant/config:/config
+      - /mnt/drive1/Media:/media
