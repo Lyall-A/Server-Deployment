@@ -7,6 +7,10 @@ services:
     # network_mode: bridge
     # ports:
     #   - 8096:8096
+    group_add:
+      - "122"
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
     volumes:
       - ../Docker volumes/jellyfin/config:/config
       - ../Docker volumes/jellyfin/cache:/cache

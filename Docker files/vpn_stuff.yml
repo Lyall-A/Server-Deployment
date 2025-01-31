@@ -9,8 +9,12 @@ services:
       - net_admin
     ports:
       - 8112:8112 # Deluge
+      - 58846:58846 # Deluge daemon
       - 6881:6881/udp # Deluge inbound torrent traffic
       - 6881:6881/tcp # Deluge inbound torrent traffic
+      - 8090:8090 # qBittorrent
+      - 6887:6887/udp # qBittorrent inbound torrent traffic
+      - 6887:6887/tcp # qBittorrent inbound torrent traffic
       - 8989:8989 # Sonarr
       - 7878:7878 # Radarr
       - 8686:8686 # Lidarr
@@ -28,6 +32,19 @@ services:
       - ../Docker volumes/deluge/config:/config
       - /mnt/drive1/Media:/media
       - /mnt/drive1/Media/Torrents:/downloads
+  # qBittorrent
+  qbittorrent:
+    image: linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    restart: unless-stopped
+    network_mode: service:vpn
+    environment:
+      - WEBUI_PORT=8090
+      - TORRENTING_PORT=6887
+    volumes:
+      - ../Docker volumes/qbittorrent/config:/config
+      - /mnt/drive1/Media/Torrents:/downloads
+      - /mnt/drive1/Media:/media
   # Sonarr (Shows)
   sonarr:
     image: ghcr.io/hotio/sonarr

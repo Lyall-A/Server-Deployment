@@ -1,10 +1,12 @@
 services:
   http_proxy:
-    image: node:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.http_proxy
     container_name: http_proxy
     restart: unless-stopped
     network_mode: host
-    working_dir: /data
-    command: node .
     volumes:
-      - ../Docker volumes/http_proxy:/data
+      - ../Docker volumes/http_proxy/config.json:/data/config.json
+      - ../Docker volumes/http_proxy/services:/data/services
+      - ../Docker volumes/http_proxy/pages:/data/pages

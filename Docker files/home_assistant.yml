@@ -1,7 +1,7 @@
 services:
-  homeassistant:
+  home_assistant:
     image: ghcr.io/home-assistant/home-assistant
-    container_name: homeassistant
+    container_name: home_assistant
     restart: unless-stopped
     network_mode: host
     # network_mode: bridge
@@ -11,5 +11,5 @@ services:
     #   - 51827:51827
     #   - 8123:8123
     volumes:
-      - ../Docker volumes/homeassistant/config:/config
+      - ../Docker volumes/home_assistant/config:/config
       - /mnt/drive1/Media:/media
