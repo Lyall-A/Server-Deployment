@@ -39,6 +39,8 @@ services:
     restart: unless-stopped
     network_mode: service:vpn
     environment:
+      - PUID=1000
+      - PGID=1000
       - WEBUI_PORT=8090
       - TORRENTING_PORT=6887
     volumes:
