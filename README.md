@@ -64,7 +64,7 @@ Assuming x64 with UEFI, a lot of this is based of [Arch installation guide](http
 
 ## Extras
 * Mount drives at `/mnt/drive<number>`
-* Place `Docker files` and `Docker volumes` in home directory
+* Put Docker files in `~/Docker` and volume data in `~/Docker/Volumes`
 
 ## Packages
 * ssh

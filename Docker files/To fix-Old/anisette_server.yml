@@ -1,9 +1,0 @@
-version: "3.8"
-services:
-  anisette_server:
-    image: nyamisty/alt_anisette_server
-    container_name: anisette_server
-    restart: unless-stopped
-    network_mode: bridge
-    ports:
-      - 8549:6969
